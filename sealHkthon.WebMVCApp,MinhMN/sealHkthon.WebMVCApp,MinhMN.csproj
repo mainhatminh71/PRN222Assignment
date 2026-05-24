@@ -9,7 +9,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\sealHkthon.Services.ThuanVCT\sealHkthon.Services.ThuanVCT.csproj" />
+    <ProjectReference Include="..\sealHkthon.Entities.ThuanVCT\sealHkthon.Entities.MinhMN.csproj" />
+    <ProjectReference Include="..\sealHkthon.Repositories.ThuanVCT\sealHkthon.Repositories.MinhMN.csproj" />
+    <ProjectReference Include="..\sealHkthon.Services.ThuanVCT\sealHkthon.Services.MinhMN.csproj" />
   </ItemGroup>
 
 </Project>

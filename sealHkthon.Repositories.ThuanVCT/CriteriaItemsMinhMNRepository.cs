@@ -22,13 +22,13 @@ namespace sealHkthon.Repositories.MinhMN
         {
             return await _context.CriteriaItemsMinhMNs
                 .Include(c => c.CriteriaTemplateSetsMinhMN)
-                .FirstOrDefaultAsync(c => c.criteriaIdMinhMN == criteriaIdMinhMN);
+                .FirstOrDefaultAsync(c => c.CriteriaIdMinhMN == criteriaIdMinhMN);
         }
 
         public async Task<List<CriteriaItemsMinhMN>> GetByCriteriaSetIdAsync(long criteriaSetIdMinhMN)
         {
             return await _context.CriteriaItemsMinhMNs
-                .Where(c => c.criteriaSetIdMinhMN == criteriaSetIdMinhMN)
+                .Where(c => c.CriteriaSetIdMinhMN == criteriaSetIdMinhMN)
                 .ToListAsync();
         }
 
@@ -36,8 +36,8 @@ namespace sealHkthon.Repositories.MinhMN
         {
             return await _context.CriteriaItemsMinhMNs
                 .Include(c => c.CriteriaTemplateSetsMinhMN)
-                .Where(c => c.criteriaName.Contains(criteriaName)
-                    && c.description.Contains(description))
+                .Where(c => c.CriteriaName.Contains(criteriaName)
+                    && c.Description.Contains(description))
                 .ToListAsync();
         }
     }

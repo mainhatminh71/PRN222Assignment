@@ -1,5 +1,60 @@
-﻿@{
-    ViewData["Title"] = "Criteria";
+﻿@model IEnumerable<CriteriaItemsMinhMN>
+
+@{
+    ViewData["Title"] = "Criteria Items";
 }
 
-<h1>Criteria</h1>
+<h1>Criteria Items</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CriteriaSetIdMinhMN)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CriteriaName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Weight)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaxScore)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CriteriaSetIdMinhMN)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CriteriaName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Weight)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaxScore)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.CriteriaIdMinhMN">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.CriteriaIdMinhMN">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.CriteriaIdMinhMN">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

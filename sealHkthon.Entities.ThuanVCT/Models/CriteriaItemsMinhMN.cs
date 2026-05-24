@@ -8,12 +8,12 @@ namespace sealHkthon.Entities.MinhMN.Models
 {
     public partial class CriteriaItemsMinhMN
     {
-        public long criteriaIdMinhMN { get; set; }
-        public long criteriaSetIdMinhMN { get; set; }
-        public string criteriaName { get; set; }
-        public string description { get; set; }
-        public long weight { get; set; }
-        public long maxScore { get; set; }
+        public long CriteriaIdMinhMN { get; set; }
+        public long CriteriaSetIdMinhMN { get; set; }
+        public string CriteriaName { get; set; }
+        public string Description { get; set; }
+        public long Weight { get; set; }
+        public long MaxScore { get; set; }
         public virtual CriteriaTemplateSetsMinhMN CriteriaTemplateSetsMinhMN { get; set; }
     }
 }
