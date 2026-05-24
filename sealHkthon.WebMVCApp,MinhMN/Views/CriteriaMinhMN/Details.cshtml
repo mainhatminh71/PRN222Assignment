@@ -1,54 +1,26 @@
 ﻿@model CriteriaItemsMinhMN
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Chi tiết tiêu chí";
 }
 
-<h1>Details</h1>
-
+<h1>Chi tiết Criteria Item</h1>
+<hr />
+<dl class="row">
+    <dt class="col-sm-3">Bộ template</dt>
+    <dd class="col-sm-9">@(Model.CriteriaTemplateSetsMinhMN?.criteriaSetName ?? $"#{Model.CriteriaSetIdMinhMN}")</dd>
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.CriteriaIdMinhMN)</dt>
+    <dd class="col-sm-9">@Model.CriteriaIdMinhMN</dd>
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.CriteriaName)</dt>
+    <dd class="col-sm-9">@Model.CriteriaName</dd>
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Description)</dt>
+    <dd class="col-sm-9">@Model.Description</dd>
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Weight)</dt>
+    <dd class="col-sm-9">@Model.Weight</dd>
+    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.MaxScore)</dt>
+    <dd class="col-sm-9">@Model.MaxScore</dd>
+</dl>
 <div>
-    <h4>Criteria Item</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.CriteriaIdMinhMN)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.CriteriaIdMinhMN)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.CriteriaSetIdMinhMN)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.CriteriaSetIdMinhMN)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.CriteriaName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.CriteriaName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Weight)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Weight)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.MaxScore)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.MaxScore)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.CriteriaIdMinhMN">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model.CriteriaIdMinhMN" class="btn btn-primary">Sửa</a>
+    <a asp-action="Index" asp-route-criteriaSetId="@Model.CriteriaSetIdMinhMN" class="btn btn-secondary">Danh sách</a>
 </div>

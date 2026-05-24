@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using sealHkthon.Entities.MinhMN.Models;
 using sealHkthon.Services.MinhMN;
 
@@ -7,15 +8,26 @@ namespace sealHkthon.WebMVCApp.MinhMN.Controllers
     public class CriteriaMinhMNController : Controller
     {
         private readonly ICriteriaItemsMinhMNService _service;
+        private readonly ICriteriaTemplateSetsMinhMNService _templateService;
 
-        public CriteriaMinhMNController(ICriteriaItemsMinhMNService service)
+        public CriteriaMinhMNController(
+            ICriteriaItemsMinhMNService service,
+            ICriteriaTemplateSetsMinhMNService templateService)
         {
             _service = service;
+            _templateService = templateService;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(long? criteriaSetId)
         {
-            return View(await _service.GetAllAsync());
+            var items = criteriaSetId.HasValue
+                ? await _service.GetByCriteriaSetIdAsync(criteriaSetId.Value)
+                : await _service.GetAllAsync();
+
+            await PopulateTemplateSetsSelectListAsync(criteriaSetId);
+            ViewBag.FilterCriteriaSetId = criteriaSetId;
+
+            return View(items);
         }
 
         public async Task<IActionResult> Details(long? id)
@@ -34,9 +46,13 @@ namespace sealHkthon.WebMVCApp.MinhMN.Controllers
             return View(item);
         }
 
-        public IActionResult Create()
+        public async Task<IActionResult> Create(long? criteriaSetId)
         {
-            return View();
+            await PopulateTemplateSetsSelectListAsync(criteriaSetId);
+            return View(new CriteriaItemsMinhMN
+            {
+                CriteriaSetIdMinhMN = criteriaSetId
+            });
         }
 
         [HttpPost]
@@ -45,10 +61,18 @@ namespace sealHkthon.WebMVCApp.MinhMN.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _service.CreateAsync(item);
-                return RedirectToAction(nameof(Index));
+                try
+                {
+                    await _service.CreateAsync(item);
+                    return RedirectToAction(nameof(Index), new { criteriaSetId = item.CriteriaSetIdMinhMN });
+                }
+                catch (ApplicationException ex)
+                {
+                    ModelState.AddModelError(string.Empty, ex.Message);
+                }
             }
 
+            await PopulateTemplateSetsSelectListAsync(item.CriteriaSetIdMinhMN);
             return View(item);
         }
 
@@ -65,6 +89,7 @@ namespace sealHkthon.WebMVCApp.MinhMN.Controllers
                 return NotFound();
             }
 
+            await PopulateTemplateSetsSelectListAsync(item.CriteriaSetIdMinhMN);
             return View(item);
         }
 
@@ -79,10 +104,18 @@ namespace sealHkthon.WebMVCApp.MinhMN.Controllers
 
             if (ModelState.IsValid)
             {
-                await _service.UpdateAsync(item);
-                return RedirectToAction(nameof(Index));
+                try
+                {
+                    await _service.UpdateAsync(item);
+                    return RedirectToAction(nameof(Index), new { criteriaSetId = item.CriteriaSetIdMinhMN });
+                }
+                catch (ApplicationException ex)
+                {
+                    ModelState.AddModelError(string.Empty, ex.Message);
+                }
             }
 
+            await PopulateTemplateSetsSelectListAsync(item.CriteriaSetIdMinhMN);
             return View(item);
         }
 
@@ -104,15 +137,22 @@ namespace sealHkthon.WebMVCApp.MinhMN.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(long id)
+        public async Task<IActionResult> DeleteConfirmed(long id, long? criteriaSetId)
         {
             var item = await _service.GetByIdAsync(id);
             if (item != null)
             {
                 await _service.RemoveAsync(item);
+                criteriaSetId ??= item.CriteriaSetIdMinhMN;
             }
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Index), new { criteriaSetId });
+        }
+
+        private async Task PopulateTemplateSetsSelectListAsync(long? selectedId = null)
+        {
+            var sets = await _templateService.GetAllAsync();
+            ViewBag.CriteriaSetIdMinhMN = new SelectList(sets, "criteriaSetIdMinhMN", "criteriaSetName", selectedId);
         }
     }
 }

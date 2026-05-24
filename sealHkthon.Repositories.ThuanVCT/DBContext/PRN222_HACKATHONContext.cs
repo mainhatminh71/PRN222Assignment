@@ -121,8 +121,8 @@ public partial class PRN222_HACKATHONContext : DbContext
             entity.Property(e => e.Description)
                 .HasMaxLength(1000)
                 .HasColumnName("Description");
-            entity.Property(e => e.Weight).HasColumnName("Weight");
-            entity.Property(e => e.MaxScore).HasColumnName("MaxScore");
+            entity.Property(e => e.Weight).HasColumnType("decimal(18, 2)").HasColumnName("Weight");
+            entity.Property(e => e.MaxScore).HasColumnType("decimal(18, 2)").HasColumnName("MaxScore");
 
             entity.HasOne(d => d.CriteriaTemplateSetsMinhMN)
                 .WithMany(p => p.CriteriaItemsMinhMNs)

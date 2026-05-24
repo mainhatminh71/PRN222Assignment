@@ -48,7 +48,7 @@ namespace sealHkthon.Services.MinhMN
                     throw new ArgumentException("Criteria item must not be null.");
                 if (string.IsNullOrWhiteSpace(entity.CriteriaName))
                     throw new ArgumentException("Criteria name must not be empty.");
-                if (entity.CriteriaSetIdMinhMN <= 0)
+                if (!entity.CriteriaSetIdMinhMN.HasValue || entity.CriteriaSetIdMinhMN.Value <= 0)
                     throw new ArgumentException("Criteria set id must be greater than zero.");
 
                 return await _repository.CreateAsync(entity);
@@ -70,7 +70,7 @@ namespace sealHkthon.Services.MinhMN
                     throw new ArgumentException("Criteria id must be greater than zero.");
                 if (string.IsNullOrWhiteSpace(entity.CriteriaName))
                     throw new ArgumentException("Criteria name must not be empty.");
-                if (entity.CriteriaSetIdMinhMN <= 0)
+                if (!entity.CriteriaSetIdMinhMN.HasValue || entity.CriteriaSetIdMinhMN.Value <= 0)
                     throw new ArgumentException("Criteria set id must be greater than zero.");
 
                 return await _repository.UpdateAsync(entity);

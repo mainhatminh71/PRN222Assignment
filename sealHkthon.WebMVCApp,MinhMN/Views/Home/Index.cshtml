@@ -1,8 +1,31 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+@{
+    ViewData["Title"] = "Home";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="hero-home">
+    <h1>Quản lý tiêu chí chấm điểm</h1>
+    <p class="lead">Tạo bộ template rubric và cấu hình từng tiêu chí cho hackathon — module MinhMN.</p>
+</div>
+
+<div class="row g-4 justify-content-center mt-2 mb-4">
+    <div class="col-md-5">
+        <div class="feature-card template">
+            <div class="icon-wrap"><i class="bi bi-collection"></i></div>
+            <h3>Template Sets</h3>
+            <p>Bộ tiêu chí mặc định — dùng lại cho nhiều sự kiện.</p>
+            <a class="btn btn-primary w-100" asp-controller="CriteriaTemplateMinhMN" asp-action="Index">
+                <i class="bi bi-arrow-right-circle me-1"></i> Mở Template Sets
+            </a>
+        </div>
+    </div>
+    <div class="col-md-5">
+        <div class="feature-card items">
+            <div class="icon-wrap"><i class="bi bi-list-check"></i></div>
+            <h3>Criteria Items</h3>
+            <p>Tiêu chí lẻ trong từng bộ — trọng số và điểm tối đa.</p>
+            <a class="btn btn-outline-primary w-100" asp-controller="CriteriaMinhMN" asp-action="Index">
+                <i class="bi bi-arrow-right-circle me-1"></i> Mở Criteria Items
+            </a>
+        </div>
+    </div>
 </div>

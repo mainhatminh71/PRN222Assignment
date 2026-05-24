@@ -2,57 +2,62 @@
 
 @{
     ViewData["Title"] = "Criteria Items";
+    var filterSetId = ViewBag.FilterCriteriaSetId as long?;
 }
 
 <h1>Criteria Items</h1>
+<p class="text-muted">Tiêu chí lẻ thuộc từng bộ template — module MinhMN.</p>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
+<div class="row mb-3 align-items-end">
+    <div class="col-md-6">
+        <form method="get" asp-action="Index" class="row g-2">
+            <div class="col">
+                <label class="form-label">Lọc theo bộ template</label>
+                <select name="criteriaSetId" class="form-select" asp-items="ViewBag.CriteriaSetIdMinhMN">
+                    <option value="">-- Tất cả --</option>
+                </select>
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-secondary">Lọc</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-6 text-md-end">
+        <a class="btn btn-primary" asp-action="Create" asp-route-criteriaSetId="@filterSetId">Thêm tiêu chí</a>
+        <a class="btn btn-outline-secondary" asp-controller="CriteriaTemplateMinhMN" asp-action="Index">Quản lý Template Sets</a>
+    </div>
+</div>
+
+<table class="table table-striped table-hover">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.CriteriaSetIdMinhMN)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CriteriaName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Weight)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MaxScore)
-            </th>
+            <th>Bộ template</th>
+            <th>Tên tiêu chí</th>
+            <th>Mô tả</th>
+            <th>Trọng số (%)</th>
+            <th>Điểm tối đa</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
+        @if (!Model.Any())
+        {
+            <tr>
+                <td colspan="6" class="text-center text-muted">Chưa có tiêu chí. Hãy tạo bộ template trước, rồi thêm tiêu chí.</td>
+            </tr>
+        }
         @foreach (var item in Model)
         {
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CriteriaSetIdMinhMN)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CriteriaName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Weight)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.MaxScore)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.CriteriaIdMinhMN">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.CriteriaIdMinhMN">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.CriteriaIdMinhMN">Delete</a>
+                <td>@(item.CriteriaTemplateSetsMinhMN?.criteriaSetName ?? $"#{item.CriteriaSetIdMinhMN}")</td>
+                <td>@item.CriteriaName</td>
+                <td>@item.Description</td>
+                <td>@item.Weight</td>
+                <td>@item.MaxScore</td>
+                <td class="text-nowrap">
+                    <a asp-action="Edit" asp-route-id="@item.CriteriaIdMinhMN">Sửa</a> |
+                    <a asp-action="Details" asp-route-id="@item.CriteriaIdMinhMN">Chi tiết</a> |
+                    <a asp-action="Delete" asp-route-id="@item.CriteriaIdMinhMN">Xóa</a>
                 </td>
             </tr>
         }
