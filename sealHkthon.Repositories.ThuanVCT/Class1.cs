@@ -1,4 +1,4 @@
-﻿namespace sealHkthon.Repositories.ThuanVCT
+namespace sealHkthon.Repositories.MinhMN
 {
     public class Class1
     {

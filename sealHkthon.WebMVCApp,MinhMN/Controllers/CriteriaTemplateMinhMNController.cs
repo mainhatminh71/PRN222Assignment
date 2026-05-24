@@ -1,4 +1,4 @@
-﻿namespace sealHkthon.WebMVCApp_MinhMN.Controllers
+namespace sealHkthon.WebMVCApp.MinhMN.Controllers
 {
     public class CriteriaTemplateMinhMNController
     {

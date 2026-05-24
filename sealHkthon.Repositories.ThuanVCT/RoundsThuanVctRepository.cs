@@ -1,24 +1,24 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
-namespace sealHkthon.Repositories.ThuanVCT
+namespace sealHkthon.Repositories.MinhMN
 {
-    public class RoundsThuanVctRepository : Base.GenericRepository<Entities.ThuanVCT.Models.RoundsThuanVct>
+    public class RoundsThuanVctRepository : Base.GenericRepository<Entities.MinhMN.Models.RoundsThuanVct>
     {
         public RoundsThuanVctRepository()
         {
         }
         public RoundsThuanVctRepository(DBContext.PRN222_HACKATHONContext context) => _context = context;
 
-        //public async Task<List<Entities.ThuanVCT.Models.RoundsThuanVct>> GetAllAsync(int eventId)
+        //public async Task<List<Entities.MinhMN.Models.RoundsThuanVct>> GetAllAsync(int eventId)
         //{
         //    return await _context.RoundsThuanVcts.ToListAsync();
         //}
-        public async Task<List<Entities.ThuanVCT.Models.RoundsThuanVct>> GetAllAsync()
+        public async Task<List<Entities.MinhMN.Models.RoundsThuanVct>> GetAllAsync()
         {
             return await _context.RoundsThuanVcts.ToListAsync();
         }

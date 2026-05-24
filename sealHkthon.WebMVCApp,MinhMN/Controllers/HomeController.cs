@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using sealHkthon.WebMVCApp_MinhMN.Models;
+using sealHkthon.WebMVCApp.MinhMN.Models;
 using System.Diagnostics;
 
-namespace sealHkthon.WebMVCApp_MinhMN.Controllers
+namespace sealHkthon.WebMVCApp.MinhMN.Controllers
 {
     public class HomeController : Controller
     {

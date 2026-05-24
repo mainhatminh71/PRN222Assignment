@@ -1,12 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using sealHkthon.Entities.ThuanVCT.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using sealHkthon.Entities.MinhMN.Models;
 
-namespace sealHkthon.Repositories.ThuanVCT
+namespace sealHkthon.Repositories.MinhMN
 {
     public class CriteriaItemsMinhMNRepository : Base.GenericRepository<CriteriaItemsMinhMN>
     {

@@ -1,4 +1,4 @@
-﻿namespace sealHkthon.Entities.ThuanVCT
+namespace sealHkthon.Entities.MinhMN
 {
     public class Class1
     {

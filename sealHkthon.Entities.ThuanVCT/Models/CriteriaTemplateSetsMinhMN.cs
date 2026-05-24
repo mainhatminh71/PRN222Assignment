@@ -1,7 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-namespace sealHkthon.Entities.ThuanVCT.Models
+namespace sealHkthon.Entities.MinhMN.Models
 {
     public partial class CriteriaTemplateSetsMinhMN
     {

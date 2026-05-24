@@ -1,4 +1,4 @@
-namespace sealHkthon.WebMVCApp_MinhMN.Models
+namespace sealHkthon.WebMVCApp.MinhMN.Models
 {
     public class ErrorViewModel
     {

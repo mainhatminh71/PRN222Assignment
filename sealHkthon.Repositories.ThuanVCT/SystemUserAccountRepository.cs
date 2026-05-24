@@ -1,14 +1,14 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using sealHkthon.Entities.ThuanVCT.Models;
-using sealHkthon.Repositories.ThuanVCT.Base;
-using sealHkthon.Repositories.ThuanVCT.DBContext;
+using sealHkthon.Entities.MinhMN.Models;
+using sealHkthon.Repositories.MinhMN.Base;
+using sealHkthon.Repositories.MinhMN.DBContext;
 
-namespace sealHkthon.Repositories.ThuanVCT
+namespace sealHkthon.Repositories.MinhMN
 {
     public class SystemUserAccountRepository : GenericRepository<SystemUserAccount>
     {

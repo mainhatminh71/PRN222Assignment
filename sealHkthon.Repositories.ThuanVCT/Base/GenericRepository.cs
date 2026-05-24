@@ -1,12 +1,12 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using sealHkthon.Repositories.ThuanVCT.DBContext;
+using sealHkthon.Repositories.MinhMN.DBContext;
 
-namespace sealHkthon.Repositories.ThuanVCT.Base
+namespace sealHkthon.Repositories.MinhMN.Base
 {
     public class GenericRepository<T> where T : class
     {
