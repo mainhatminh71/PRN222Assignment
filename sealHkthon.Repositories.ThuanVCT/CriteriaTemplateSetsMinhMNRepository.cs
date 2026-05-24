@@ -1,0 +1,49 @@
+﻿using Microsoft.EntityFrameworkCore;
+using sealHkthon.Entities.ThuanVCT.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace sealHkthon.Repositories.ThuanVCT
+{
+    public class CriteriaTemplateSetsMinhMNRepository : Base.GenericRepository<Entities.ThuanVCT.Models.CriteriaTemplateSetsMinhMN>
+    {
+        public CriteriaTemplateSetsMinhMNRepository()
+        {
+        }
+
+        public CriteriaTemplateSetsMinhMNRepository(DBContext.PRN222_HACKATHONContext context) => _context = context;
+
+        public new async Task<List<CriteriaItemsMinhMN>> GetAllAsync()
+        {
+            return await _context.CriteriaItemsMinhMNs
+                .Include(c => c.CriteriaTemplateSetsMinhMN)
+                .ToListAsync();
+        }
+
+        public async Task<CriteriaItemsMinhMN?> GetByIdAsync(long criteriaIdMinhMN)
+        {
+            return await _context.CriteriaItemsMinhMNs
+                .Include(c => c.CriteriaTemplateSetsMinhMN)
+                .FirstOrDefaultAsync(c => c.criteriaIdMinhMN == criteriaIdMinhMN);
+        }
+
+        public async Task<List<CriteriaItemsMinhMN>> GetByCriteriaSetIdAsync(long criteriaSetIdMinhMN)
+        {
+            return await _context.CriteriaItemsMinhMNs
+                .Where(c => c.criteriaSetIdMinhMN == criteriaSetIdMinhMN)
+                .ToListAsync();
+        }
+
+        public async Task<List<CriteriaItemsMinhMN>> SearchAsync(string criteriaName, string description)
+        {
+            return await _context.CriteriaItemsMinhMNs
+                .Include(c => c.CriteriaTemplateSetsMinhMN)
+                .Where(c => c.criteriaName.Contains(criteriaName)
+                    && c.description.Contains(description))
+                .ToListAsync();
+        }
+    }
+}
