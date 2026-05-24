@@ -1,3 +1,5 @@
+﻿using sealHkthon.Repositories.MinhMN;
+using sealHkthon.Services.MinhMN;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +8,28 @@ using System.Threading.Tasks;
 
 namespace sealHkthon.Services.MinhMN
 {
-    public class SystemUserAccountService
+    public class SystemUserAccountService : ISystemUserAccountService
     {
+        private readonly SystemUserAccountRepository _repository;
+
+        public SystemUserAccountService() => _repository = new SystemUserAccountRepository();
+
+        public async Task<Entities.MinhMN.Models.SystemUserAccount> GetUserAccountAsync(string username, string password)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+                    throw new ArgumentException("Username and password must not be empty.");
+
+                return await _repository.GetUserAccountAsync(username, password);
+
+            }
+            catch (ArgumentException ex)
+            {
+                // Log the exception or handle it as needed
+                Console.WriteLine($"Input validation error: {ex.Message}");
+                throw new ApplicationException("Invalid input: " + ex.Message);
+            }
+        }
     }
 }

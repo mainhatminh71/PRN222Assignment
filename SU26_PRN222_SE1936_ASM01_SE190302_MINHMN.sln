@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sealHkthon.Entities.MinhMN"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sealHkthon.Repositories.MinhMN", "sealHkthon.Repositories.ThuanVCT\sealHkthon.Repositories.MinhMN.csproj", "{CE828DF9-91C9-4FD4-BC2B-6CF774D904C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sealHkthon.Services.ThuanVCT", "sealHkthon.Services.ThuanVCT\sealHkthon.Services.ThuanVCT.csproj", "{5884E57A-02B5-47F9-92DB-9A78A517D484}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sealHkthon.Services.MinhMN", "sealHkthon.Services.ThuanVCT\sealHkthon.Services.MinhMN.csproj", "{5884E57A-02B5-47F9-92DB-9A78A517D484}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sealHkthon.WebMVCApp,MinhMN", "sealHkthon.WebMVCApp,MinhMN\sealHkthon.WebMVCApp,MinhMN.csproj", "{AE2BC7E7-3054-4C2B-AF52-FE3C8E8ACA59}"
 EndProject

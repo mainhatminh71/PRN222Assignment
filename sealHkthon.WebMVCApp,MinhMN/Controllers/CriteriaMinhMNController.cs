@@ -1,21 +1,21 @@
 using Microsoft.AspNetCore.Mvc;
 using sealHkthon.Entities.MinhMN.Models;
-using sealHkthon.Repositories.MinhMN;
+using sealHkthon.Services.MinhMN;
 
 namespace sealHkthon.WebMVCApp.MinhMN.Controllers
 {
     public class CriteriaMinhMNController : Controller
     {
-        private readonly CriteriaItemsMinhMNRepository _repository;
+        private readonly ICriteriaItemsMinhMNService _service;
 
-        public CriteriaMinhMNController()
+        public CriteriaMinhMNController(ICriteriaItemsMinhMNService service)
         {
-            _repository = new CriteriaItemsMinhMNRepository();
+            _service = service;
         }
 
         public async Task<IActionResult> Index()
         {
-            return View(await _repository.GetAllAsync());
+            return View(await _service.GetAllAsync());
         }
 
         public async Task<IActionResult> Details(long? id)
@@ -25,7 +25,7 @@ namespace sealHkthon.WebMVCApp.MinhMN.Controllers
                 return NotFound();
             }
 
-            var item = await _repository.GetByIdAsync(id.Value);
+            var item = await _service.GetByIdAsync(id.Value);
             if (item == null)
             {
                 return NotFound();
@@ -45,7 +45,7 @@ namespace sealHkthon.WebMVCApp.MinhMN.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _repository.CreateAsync(item);
+                await _service.CreateAsync(item);
                 return RedirectToAction(nameof(Index));
             }
 
@@ -59,7 +59,7 @@ namespace sealHkthon.WebMVCApp.MinhMN.Controllers
                 return NotFound();
             }
 
-            var item = await _repository.GetByIdAsync(id.Value);
+            var item = await _service.GetByIdAsync(id.Value);
             if (item == null)
             {
                 return NotFound();
@@ -79,7 +79,7 @@ namespace sealHkthon.WebMVCApp.MinhMN.Controllers
 
             if (ModelState.IsValid)
             {
-                await _repository.UpdateAsync(item);
+                await _service.UpdateAsync(item);
                 return RedirectToAction(nameof(Index));
             }
 
@@ -93,7 +93,7 @@ namespace sealHkthon.WebMVCApp.MinhMN.Controllers
                 return NotFound();
             }
 
-            var item = await _repository.GetByIdAsync(id.Value);
+            var item = await _service.GetByIdAsync(id.Value);
             if (item == null)
             {
                 return NotFound();
@@ -106,10 +106,10 @@ namespace sealHkthon.WebMVCApp.MinhMN.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(long id)
         {
-            var item = await _repository.GetByIdAsync(id);
+            var item = await _service.GetByIdAsync(id);
             if (item != null)
             {
-                await _repository.RemoveAsync(item);
+                await _service.RemoveAsync(item);
             }
 
             return RedirectToAction(nameof(Index));

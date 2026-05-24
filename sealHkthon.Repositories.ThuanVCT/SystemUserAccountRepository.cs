@@ -18,7 +18,7 @@ namespace sealHkthon.Repositories.MinhMN
 
         public SystemUserAccountRepository(PRN222_HACKATHONContext context) => _context = context;
 
-        public async Task<SystemUserAccount> GetByUserName(string userName, string password)
+        public async Task<SystemUserAccount> GetUserAccountAsync(string userName, string password)
         {
             return await _context.SystemUserAccounts.FirstOrDefaultAsync(
                                                             x => x.Email == userName

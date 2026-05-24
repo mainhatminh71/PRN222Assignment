@@ -1,7 +1,16 @@
+using sealHkthon.Services.MinhMN;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<IEventsThuanVctService, EventsThuanVctService>();
+builder.Services.AddScoped<IRoundsThuanVctService, RoundsThuanVctService>();
+builder.Services.AddScoped<ICriteriaItemsMinhMNService, CriteriaItemsMinhMNService>();
+builder.Services.AddScoped<ICriteriaTemplateSetsMinhMNService, CriteriaTemplateSetsMinhMNService>();
+builder.Services.AddScoped<ISystemUserAccountService, SystemUserAccountService>();
+
 
 var app = builder.Build();
 
